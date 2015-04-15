@@ -1,18 +1,6 @@
 ---
 driver:
-  name: docker
-  binary: /usr/bin/docker
-  forward_agent: true
-  require_chef_omnibus: true
-  disable_upstart: false
-  provision_command:
-    - apt-get update
-    - chown root:root /usr/bin/sudo
-    - chmod 4755 /usr/bin/sudo
-  use_cache: false
-  remove_images: true 
-  forward:
-  - 9090:9090
+  name: vagrant
 
 provisioner:
   name: chef_zero
@@ -22,6 +10,9 @@ platforms:
 
 suites:
   - name: default
+    driver:
+      network:
+        - [ "forwarded_port", { guest: 9090, host: 9090 }]
     run_list:
       - recipe[myfirstcookbook::default]
     attributes:

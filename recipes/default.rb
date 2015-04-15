@@ -23,7 +23,7 @@ template '/etc/nginx/nginx.conf' do
   mode  0754
   notifies :restart, 'service[nginx]'
   variables({
-    :chef101_loc => '/chef101/www'
+    :chef101_loc => '/var/www'
   })
 end
 
