@@ -12,7 +12,9 @@ suites:
   - name: default
     driver:
       network:
+        # This forwards port 9090 to your workstation
         - [ "forwarded_port", { guest: 9090, host: 9090 }]
     run_list:
+      # The apt cookbook runs apt-get update for you 
+      - recipe[apt]
       - recipe[myfirstcookbook::default]
-    attributes:
